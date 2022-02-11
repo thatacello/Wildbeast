@@ -21,9 +21,9 @@ a {
 }
 
 img {
-	display: block;
+  display: block;
   max-width: 100%;
-	border-radius: 5px;
+  border-radius: 5px;
 }
 
 /* GRID GERAL */
@@ -35,6 +35,29 @@ img {
     'header header header'
     'sidenav content anuncios'
     'footer footer footer';
+}
+
+/* abaixo de 1200 vai aplicar os efeitos abaixo */
+@media (max-width: 1200px) {
+	.estrutura {
+		grid-template-areas: 
+			'header header header'
+			'sidenav content content'
+			'sidenav anuncios anuncios'
+			'footer footer footer';
+	}
+}
+
+@media (max-width: 760px) {
+	.estrutura {
+		grid-template-columns: 100%;
+		grid-template-areas: 
+			'header'
+			'sidenav'
+			'content'
+			'anuncios'
+			'footer';
+	}
 }
 
 /* HEADER */
@@ -59,202 +82,256 @@ img {
 
 .header nav a {
   display: block;
-	padding: 10px;
-	color: #fff;
-	font-size: 1.125em;
-	background: rgba(0, 0, 0, .1);
-	border-radius: 5px;
-	transition: .1s;
+  padding: 10px;
+  color: #fff;
+  font-size: 1.125em;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  transition: 0.1s;
 }
 
 .header nav a:hover {
-	background: rgba(0, 0, 0, .5);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 /* adiciona o estilo para todo li que vier após um li */
 .header li + li {
-	margin-left: 30px;
+  margin-left: 30px;
+}
+
+@media (max-width: 760px) {
+	.header {
+		grid-template-columns: auto;
+	}
+	.logo {
+		margin-bottom: 20px;
+	}
+	.header nav a {
+		font-size: 1em;
+	}
+	.header li + li {
+		margin-left: 10px;
+	}
 }
 
 /* SIDENAV */
 
 .sidenav {
   grid-area: sidenav;
-	background: #fafbfc;
-	padding: 30px;
+  background: #fafbfc;
+  padding: 30px;
 }
 
 .sidenav li a {
-	display: block;
-	min-width: 60px;
-	max-width: 100px;
-	margin: 0 auto 30px auto;
-	background: #fff;
-	padding: 20px;
-	border-radius: 5px;
-	box-shadow: 5px 5px 15px 0px rgb(44, 44, 44, .15);
-	transition: .1s ease-out;
+  display: block;
+  min-width: 60px;
+  max-width: 100px;
+  margin: 0 auto 30px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px 0px rgb(44, 44, 44, 0.15);
+  transition: 0.1s ease-out;
 }
 
 .sidenav li a:hover {
-	background: #b07dfb;
+  background: #b07dfb;
+}
+
+@keyframes seta {
+	from {
+		right: 30px;
+	}
+	to {
+		right: 20px;
+	}
+}
+
+@media (max-width: 760px) {
+	.sidenav {
+		overflow-x: auto;
+		position: relative;
+	}
+	.sidenav::after {
+		content: '→';
+		/* o ultimo elemento que será usado como referencia é o body do site */
+		/* para isso preciso colocar o sidenav como position: relative; */
+		/* assim o elemento que será usado como referencia para a seta é o sidenav */
+		position: absolute;
+		top: 5px;
+		right: 30px;
+		color: rgba(0, 0, 0, 0.3);
+		animation: seta .5s ease-in 0s infinite alternate;
+	}
+	.sidenav ul {
+		display: flex;
+	}
+	.sidenav li {
+		flex: 1 0 60px;
+	}
+	.sidenav {
+		padding: 0 30px;
+	}
+	.sidenav li a {
+		margin: 30px 30px 30px 0;
+	}
 }
 
 /* CONTENT */
 
 .content {
   grid-area: content;
-	max-width: 900px;
-	margin: 0 auto;
-	padding: 30px;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
 }
 
 .col-wide {
-	grid-column: 1 / -1;
+  grid-column: 1 / -1;
 }
 
 .imagem-1 {
-	grid-row: span 2;
-	align-self: end;
+  grid-row: span 2;
+  align-self: end;
 }
 
 .imagem-2 {
-	align-self: end;
+  align-self: end;
 }
 
 /* ESTILOS CONTENT */
 
 p {
-	font-size: 1.2em;
-	line-height: 1.6;
-	letter-spacing: -0.005em;
-	color: rgba(0, 0, 0, .7);
+  font-size: 1.2em;
+  line-height: 1.6;
+  letter-spacing: -0.005em;
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .informacoes p + p {
-	margin-top: 30px;
+  margin-top: 30px;
 }
 
 /* TITULO */
 
 .titulo {
-	color: #b07dfb;
+  color: #b07dfb;
 }
 
 .titulo h1 {
-	font-size: 3.75em;
-	line-height: 1;
-	font-weight: 700;
+  font-size: 3.75em;
+  line-height: 1;
+  font-weight: 700;
 }
 
 .titulo span {
-	font-size: 0.875em;
-	font-style: italic;
+  font-size: 0.875em;
+  font-style: italic;
 }
 
 /* CARACTERÍSTICAS */
 
 .caracteristicas {
-	display: flex;
-	align-items: flex-start;
+  display: flex;
+  align-items: flex-start;
 }
 
 /* sinal de maior -> quero falar somente com as divs que estão diretamente dentro de .caracteristicas */
 .caracteristicas > div {
-	width: 80px;
-	text-align: center;
-	background: linear-gradient(135deg, #8844ee, #b07dfb);
-	border-radius: 5px;
-	box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, .15);
-	position: relative;
+  width: 80px;
+  text-align: center;
+  background: linear-gradient(135deg, #8844ee, #b07dfb);
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, 0.15);
+  position: relative;
 }
 
 /* div:first-child -> falo somente com a primeira div */
 .caracteristicas > div:first-child {
-	margin-right: 30px;
+  margin-right: 30px;
 }
 
 .caracteristicas span {
-	/* display: block -> pega de ponta a ponta */
-	display: block;
-	color: #b07dfb;
+  /* display: block -> pega de ponta a ponta */
+  display: block;
+  color: #b07dfb;
 }
 
 .numero {
-	color: #b07dfb;
-	font-size: 3em;
-	line-height: 1;
-	margin: 10px auto;
+  color: #b07dfb;
+  font-size: 3em;
+  line-height: 1;
+  margin: 10px auto;
 }
 
 .rotulo {
-	background: #fff;
-	border-radius: 0 0 5px 5px;
-	padding: 5px 0;
-	position: relative;
-	/* sem o position: relative o top não funciona */
-	top: 2px;
+  background: #fff;
+  border-radius: 0 0 5px 5px;
+  padding: 5px 0;
+  position: relative;
+  /* sem o position: relative o top não funciona */
+  top: 2px;
 }
 
 .destaque {
-	font-size: 0.875em;
-	color: #b07dfb;
-	max-width: 16em;
+  font-size: 0.875em;
+  color: #b07dfb;
+  max-width: 16em;
 }
 
-.citacao, .atributos {
-	align-self: flex-start;
-	background: linear-gradient(135deg, #8844ee, #b07dfb);
-	padding: 30px;
-	border-radius: 5px;
-	box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, .15);
+.citacao,
+.atributos {
+  align-self: flex-start;
+  background: linear-gradient(135deg, #8844ee, #b07dfb);
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px 0px rgba(44, 44, 44, 0.15);
 }
 
 .citacao p {
-	font-size: 1.5em;
-	font-style: italic;
-	text-align: center;
-	max-width: 500px;
-	margin: 0 auto;
-	color: #fff;
+  font-size: 1.5em;
+  font-style: italic;
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  color: #fff;
 }
 
 .atributos li {
-	color: #fff;
-	font-family: 'Courier New', Courier, monospace;
-	font-size: 1.125em;
-	padding: 15px;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 1.125em;
+  padding: 15px;
 }
 
 .atributos li + li {
-	border-top: 2px solid #b07dfb;
+  border-top: 2px solid #b07dfb;
 }
-
 
 /* ANUNCIOS */
 
 .anuncios {
   grid-area: anuncios;
-	background: #fafbfc;
-	display: grid;
-	align-content: flex-start;
-	padding: 30px;
-	/* gap é apenas ENTRE OS ELEMENTOS */
-	gap: 30px;
+  background: #fafbfc;
+  display: grid;
+  align-content: flex-start;
+  padding: 30px;
+  /* gap é apenas ENTRE OS ELEMENTOS */
+  gap: 30px;
 }
 
 /* FOOTER */
 
 .footer {
   grid-area: footer;
-	background: linear-gradient(135deg, #8844ee, #b07dfb);
+  background: linear-gradient(135deg, #8844ee, #b07dfb);
 }
 
 .footer p {
-	color: #fff;
-	text-align: center;
-	padding: 30px;
+  color: #fff;
+  text-align: center;
+  padding: 30px;
 }

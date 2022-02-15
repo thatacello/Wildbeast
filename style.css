@@ -22,7 +22,7 @@ a {
 
 img {
   display: block;
-  max-width: 100%;
+  width: 100%;
   border-radius: 5px;
 }
 
@@ -189,6 +189,12 @@ img {
   gap: 30px;
 }
 
+@media (max-width: 600px) {
+	.content {
+    grid-template-columns: auto;
+  }
+}
+
 .col-wide {
   grid-column: 1 / -1;
 }
@@ -321,6 +327,7 @@ p {
   padding: 30px;
   /* gap é apenas ENTRE OS ELEMENTOS */
   gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 
 /* FOOTER */
@@ -335,3 +342,9 @@ p {
   text-align: center;
   padding: 30px;
 }
+
+/**
+cria 3 colunas (uma com 200px, outra com 3fr, e a terceira
+com min de 100px e máximo de 1fr)
+grid-template-columns: 200px 3fr minmax(100px, 1fr);
+*/
